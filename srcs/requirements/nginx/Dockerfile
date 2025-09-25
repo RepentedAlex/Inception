@@ -1,4 +1,6 @@
-FROM ghcr.io/dockerhub-mirror/debian:bookworm
+FROM    debian:bookworm
+
+# FROM ghcr.io/dockerhub-mirror/debian:bookworm
 
 RUN apt-get update && \
     apt-get install -y nginx openssl && \
@@ -12,7 +14,11 @@ RUN apt-get update && \
 RUN rm -rf /var/lib/apt/lists/*
 
 COPY ./conf/nginx.conf /etc/nginx/nginx.conf
+COPY ./conf/launch.sh /bin/nginx-launch
+RUN	chmod +x /bin/nginx-launch
 
 EXPOSE 443/tcp
 
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["/bin/nginx-launch", "nginx"]
+
+# CMD ["nginx", "-g", "daemon off;"]
