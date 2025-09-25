@@ -19,7 +19,6 @@ su mysql -s /bin/sh -c "mysqladmin shutdown"
 wait "$PID"
 
 # configure mariadb to use port 3306
-sed -i /etc/mysql/mariadb.cnf -e 's/^# port = 3306$/port = 3306\nbind-address = 0.0.0.0/'
-sed -i /etc/mysql/mariadb.cnf -e 's/^skip-networking$/;\0/'
+sed -i /etc/mysql/mariadb.conf.d/50-server.cnf -e 's/127.0.0.1/0.0.0.0/'
 
 exec su mysql -s /bin/sh -c "$@"

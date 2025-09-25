@@ -14,6 +14,7 @@ RUN groupadd -r wordpress && \
 RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar -O /bin/wp-cli.phar && \
     chmod +x /bin/wp-cli.phar && \
     ln -s /bin/wp-cli.phar /bin/wp && \
+    mkdir -p /var/www/wordpress && \
     rm -rf /var/lib/apt/lists/*
 
 COPY ./www.conf /etc/php/8.2/fpm/pool.d/
@@ -22,6 +23,4 @@ RUN chmod +x /bin/wp_conf
 
 STOPSIGNAL SIGQUIT
 
-CMD ["/bin/wp_conf", "/usr/sbin/php-fpm8.2", "--allow-root"]
-
-# CMD ["tail", "-f", "/dev/null"] # testing purposes
+CMD ["/bin/wp_conf", "/usr/sbin/php-fpm8.2"]

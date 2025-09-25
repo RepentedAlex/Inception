@@ -1,0 +1,30 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_EXCMD	mixed	/number, pattern, mixed, or combineV2/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
+!_TAG_PROC_CWD	/home/apetitco/Documents/Inception/	//
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	5.9.0	//
+Commands	todo.md	/^# Commands$/;"	c
+catch_workers_output	srcs/requirements/wordpress/www.conf	/^catch_workers_output = yes/;"	k	section:www
+clean	Makefile	/^clean:$/;"	t
+daemonize	srcs/requirements/wordpress/www.conf	/^daemonize = false$/;"	k	section:global
+down	Makefile	/^down:$/;"	t
+error_log	srcs/requirements/wordpress/www.conf	/^error_log = \/dev\/stderr$/;"	k	section:global
+global	srcs/requirements/wordpress/www.conf	/^[global]$/;"	s
+group	srcs/requirements/wordpress/www.conf	/^group = wordpress$/;"	k	section:www
+listen	srcs/requirements/wordpress/www.conf	/^listen = 0.0.0.0:9000$/;"	k	section:www
+log	srcs/requirements/wordpress/www.conf	/^access.log = \/dev\/stderr$/;"	k	section:www
+max_children	srcs/requirements/wordpress/www.conf	/^pm.max_children = 25$/;"	k	section:www
+max_spare_servers	srcs/requirements/wordpress/www.conf	/^pm.max_spare_servers = 10$/;"	k	section:www
+min_spare_servers	srcs/requirements/wordpress/www.conf	/^pm.min_spare_servers = 1$/;"	k	section:www
+pm	srcs/requirements/wordpress/www.conf	/^pm = dynamic$/;"	k	section:www
+rebuild	Makefile	/^rebuild:$/;"	t
+start_servers	srcs/requirements/wordpress/www.conf	/^pm.start_servers = 5$/;"	k	section:www
+up	Makefile	/^up:$/;"	t
+user	srcs/requirements/wordpress/www.conf	/^user = wordpress$/;"	k	section:www
+www	srcs/requirements/wordpress/www.conf	/^[www]$/;"	s
