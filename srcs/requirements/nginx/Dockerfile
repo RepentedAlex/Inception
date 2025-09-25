@@ -9,8 +9,8 @@ RUN apt-get update && \
         -keyout /etc/nginx/ssl/private/nginx.key \
         -out /etc/nginx/ssl/certs/nginx.crt \
         -subj "/C=FR/ST=IDF/L=Paris/O=42/OU=42/CN=apetitco.42.fr/UID=apetitco" && \
-    chmod 755 /var/www && \
-    chown -R www-data:www-data /var/www
+    chmod 755 /var/www/html && \
+    chown -R www-data:www-data /var/www/html
 RUN rm -rf /var/lib/apt/lists/*
 
 COPY ./conf/nginx.conf /etc/nginx/nginx.conf
