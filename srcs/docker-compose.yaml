@@ -24,7 +24,7 @@ services:
       - ./.env_test
     # restart: always
     volumes:
-      - wordpress:/var/www/wordpress
+      - wordpress:/var/www/html
     ports:
       - "443:443"
     networks:
@@ -41,7 +41,7 @@ services:
       - ./.env_test
     # restart: always
     volumes:
-      - wordpress:/var/www/wordpress
+      - wordpress:/var/www/html
     networks:
       - inception
     depends_on:
