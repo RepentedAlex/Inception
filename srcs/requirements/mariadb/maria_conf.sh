@@ -18,8 +18,8 @@ echo "CREATE DATABASE IF NOT EXISTS $DB_NAME; GRANT ALL ON $DB_NAME.* TO '$DB_US
 su mysql -s /bin/sh -c "mysqladmin shutdown"
 wait "$PID"
 
-# configure mariadb to use port 3307
-sed -i /etc/mysql/mariadb.cnf -e 's/^port=3307$/\0\nbind-address = 0.0.0.0/'
+# configure mariadb to use port 3306
+sed -i /etc/mysql/mariadb.cnf -e 's/^# port = 3306$/port = 3306\nbind-address = 0.0.0.0/'
 sed -i /etc/mysql/mariadb.cnf -e 's/^skip-networking$/;\0/'
 
 exec su mysql -s /bin/sh -c "$@"

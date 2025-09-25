@@ -11,6 +11,8 @@ RUN apt-get update && \
 COPY ./maria_conf.sh /bin/maria_conf
 RUN chmod +x /bin/maria_conf;
 
+EXPOSE 3306
+
 CMD ["/bin/maria_conf", "mysqld"]
 
 # CMD ["tail", "-f", "/dev/null"]
