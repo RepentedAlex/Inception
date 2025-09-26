@@ -1,15 +1,31 @@
-up:
-	
-	docker-compose up --build -d
+DATA_DIR	=	~/data
 
-down:
-	docker-compose down
+all:
+	$(MAKE) --no-print-directory build
+	$(MAKE) --no-print-directory up
+
+build: .env
+	bash -c "mkdir -p $(DATA_DIR)/{wordpress,mariadb}"
+	docker compose -f ./srcs/docker-compose.yml build
+
+up:
+	docker compose -f ./srcs/docker-compose.yml up -d
+
+stop:
+	docker compose -f ./srcs/docker-compose.yml stop
 
 clean:
-	docker system prune -a
+	docker compose -f ./srcs/docker-compose.yml down
+	sudo rm -rf $(DATA_DIR)
 
-rebuild:
-	docker-compose down
-	docker-compose up --build -d
+prune:
+	docker compose -f ./srcs/docker-compose.yml down
+	docker system prune -f -a
+	docker image prune -f -a
+	docker volume prune -f
 
-.PHONY: up down clean rebuild
+re: stop clean all
+
+.PHONY: build up stop clean prune re
+
+export DATA_DIR
