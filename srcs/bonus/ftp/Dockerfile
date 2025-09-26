@@ -12,4 +12,4 @@ RUN chmod +x ./bin/conf_ftp
 
 STOPSIGNAL SIGKILL
 
-CMD ["./bin/conf_ftp", "/usr/sbin/vsftpd", "/etc/vsftpd/vsftpd.conf"]
+CMD ["./bin/conf_ftp", "/usr/sbin/vsftpd", "/etc/vsftpd.conf"]
