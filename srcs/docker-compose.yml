@@ -50,56 +50,6 @@ services:
     depends_on:
       - mariadb
 
-### BONUS
-
-  redis:
-    build:
-      context: ./bonus/redis
-      dockerfile: Dockerfile
-    container_name: redis
-    image: redis
-    restart: always
-    volumes:
-      - wordpress:/var/www/html
-    depends_on:
-      - wordpress
-    networks:
-      - inception
-  
-  ftp:
-    build:
-      context: ./bonus/ftp
-      dockerfile: Dockerfile
-    container_name: ftp
-    image: ftp
-    env_file:
-      - ./.env_test
-    restart: always
-    networks:
-      - inception
-    volumes:
-      - wordpress:/var/www/html
-    depends_on:
-      - wordpress
-    ports:
-      - '21:21'
-      - '21100-21110:21100-21110'
-
-
-  adminer:
-    build:
-      context: ./bonus/adminer
-      dockerfile: Dockerfile
-    container_name: adminer
-    image: adminer
-    restart: always
-    networks:
-      - inception
-    depends_on:
-      - mariadb
-### !BONUS
-
-
 volumes:
   wordpress:
     name: wordpress_data

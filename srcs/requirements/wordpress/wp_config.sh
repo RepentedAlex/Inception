@@ -17,16 +17,6 @@ if ! [ -e "/var/www/html/wp-config.php" ]; then
 		--admin_user="$WP_AUSER" --admin_password="$WP_APASS" --admin_email="$WP_AMAIL" --path=/var/www/html --allow-root
 	wp user create "$WP_USER" "$WP_MAIL" --user_pass="$WP_PASS" --role=editor --path=/var/www/html --allow-root
 	wp option set comment_previously_approved 0 --path=/var/www/html --allow-root
-
-	# the bonus part
-	wp config set WP_REDIS_HOST redis --path=/var/www/html --allow-root;
-	wp config set WP_REDIS_PORT 6379 --path=/var/www/html --allow-root;
-	wp config set WP_REDIS_DATABASE 0 --path=/var/www/html --allow-root;
-	wp config set WP_CACHE true --path=/var/www/html --allow-root;
-	wp plugin update --all --path=/var/www/html --allow-root;
-	wp plugin install redis-cache --activate --path=/var/www/html --allow-root;
-	wp redis enable --path=/var/www/html --allow-root;
-
 fi
 
 chown wordpress -R /var/www/html
