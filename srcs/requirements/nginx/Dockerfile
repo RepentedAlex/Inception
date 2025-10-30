@@ -1,22 +1,25 @@
-FROM    debian:bookworm
+FROM alpine:3.21
 
-RUN apt-get update && \
-    apt-get install -y nginx openssl && \
-    mkdir -p /etc/nginx/ssl/private /etc/nginx/ssl/certs && \
-    openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
-        -keyout /etc/nginx/ssl/private/nginx.key \
-        -out /etc/nginx/ssl/certs/nginx.crt \
-        -subj "/C=FR/ST=IDF/L=Paris/O=42/OU=42/CN=apetitco.42.fr/UID=apetitco" && \
-    chmod 755 /var/www/html && \
-    chown -R www-data:www-data /var/www/html && \
-	rm -rf /var/lib/apt/lists/*
+LABEL maintainer="apetitco@student.42.fr"
+LABEL description="Nginx with TLS 1.2/1.3 for 42 Inception project."
+LABEL version="1.1"
+
+# Packages installation
+RUN apk add --no-cache \
+      nginx \
+      openssl \
+      curl
+
+RUN mkdir -p /etc/nginx/ssl/private /etc/nginx/ssl/certs
 
 COPY ./conf/nginx.conf /etc/nginx/nginx.conf
-COPY ./conf/launch.sh /bin/nginx-launch
-RUN	chmod +x /bin/nginx-launch
+COPY ./conf/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
-EXPOSE 443/tcp
+EXPOSE 443
 
-CMD ["/bin/nginx-launch", "nginx"]
+HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
+  CMD	curl -fk https://localhost:443/ || exit 1
 
-# CMD ["nginx", "-g", "daemon off;"]
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["nginx", "-g", "daemon off;"]

@@ -5,7 +5,7 @@ all:
 	$(MAKE) --no-print-directory up
 
 build: .env
-	bash -c "mkdir -p $(DATA_DIR)/{wordpress,mariadb}"
+	bash -c "mkdir -p $(DATA_DIR)/{wordpress,mariadb,certs}"
 	docker compose -f ./srcs/docker-compose.yml build
 
 up:
