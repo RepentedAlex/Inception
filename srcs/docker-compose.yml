@@ -8,7 +8,7 @@ services:
       dockerfile: Dockerfile
     env_file:
       - ../.env
-    # restart: always
+      # restart: always
     volumes:
       - mariadb:/var/lib/mysql
     networks:
@@ -22,7 +22,7 @@ services:
       dockerfile: Dockerfile
     env_file:
       - ../.env
-    # restart: always
+      # restart: always
     volumes:
       - wordpress:/var/www/html
     ports:
@@ -40,7 +40,7 @@ services:
       dockerfile: Dockerfile
     env_file:
       - ../.env
-    # restart: always
+      # restart: always
     volumes:
       - wordpress:/var/www/html
     networks:
@@ -63,6 +63,14 @@ volumes:
     driver_opts:
       type: none
       device: ~/data/mariadb
+      o: bind
+
+  certs:
+    name: certs
+    driver: local
+    driver_opts:
+      type: none
+      device: ~/data/certs
       o: bind
 
 networks:
